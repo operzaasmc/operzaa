@@ -28,8 +28,13 @@
        <priority>0.8000</priority>
   </url>
   <url>
+       <loc>https://operzaa.com/contact/</loc>
+       <lastmod>2026-11-08T13:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
        <loc>https://operzaa.com/privacy/</loc>
-       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <lastmod>2026-11-08T13:00:00+00:00</lastmod>
        <priority>0.8000</priority>
   </url>
   <url>
