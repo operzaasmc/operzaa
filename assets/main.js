@@ -58,6 +58,11 @@
     document.body.appendChild(banner);
   }
   var choice = getChoice();
+  // Global Privacy Control (US opt-out signal): treat as a reject.
+  if(navigator.globalPrivacyControl === true && choice !== 'denied'){
+    if(choice === 'granted'){ setChoice('denied'); } else { try{ localStorage.setItem(KEY, 'denied'); }catch(e){} }
+    choice = 'denied';
+  }
   if(choice !== 'granted' && choice !== 'denied'){ showBanner(); }
   document.querySelectorAll('[data-cookie-settings]').forEach(function(b){
     b.addEventListener('click', showBanner);

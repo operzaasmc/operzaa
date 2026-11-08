@@ -8,7 +8,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', {ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', functionality_storage:'granted', security_storage:'granted', wait_for_update:500});
-  try{ if(localStorage.getItem('oz_consent') === 'granted'){ gtag('consent', 'update', {analytics_storage:'granted'}); } }catch(e){}
+  try{ if(localStorage.getItem('oz_consent') === 'granted' && navigator.globalPrivacyControl !== true){ gtag('consent', 'update', {analytics_storage:'granted'}); } }catch(e){}
   dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
 </script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-ML9MT3TP"></script>
@@ -93,6 +93,12 @@
         <span class="eyebrow" style="color:var(--accent);">During an engagement</span>
         <h2>We work inside your tools — not a separate system.</h2>
         <p>As described elsewhere on this site, an active engagement's team works inside your own CRM and helpdesk rather than migrating your data into a system we control. Confidentiality and data-handling terms specific to your business are set out in the signed engagement agreement, which governs alongside this policy.</p>
+      </div>
+      <div class="about-block">
+        <span class="eyebrow" style="color:var(--accent);">Where this applies</span>
+        <h2>The same choice for every visitor, wherever you are.</h2>
+        <p>We show the same cookie choice to every visitor, including in the UK, the EU, the United States and Pakistan. Analytics stays off until you accept, wherever you are.</p>
+        <p style="margin-top:14px;"><strong>United States:</strong> we don't sell your personal information or share it for cross-context behavioral advertising, as those terms are used in US state privacy laws such as California's (CCPA/CPRA). If your browser sends a Global Privacy Control signal, we treat it as a request to opt out and keep analytics off. <strong>Pakistan:</strong> we handle your data in line with the Prevention of Electronic Crimes Act 2016 and the principles of Pakistan's proposed personal data protection law, and you can use the rights below in the same way.</p>
       </div>
       <div class="about-block">
         <span class="eyebrow" style="color:var(--accent);">Your rights</span>
