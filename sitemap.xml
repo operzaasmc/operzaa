@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://operzaa.com/</loc></url>
-  <url><loc>https://operzaa.com/solutions/</loc></url>
-  <url><loc>https://operzaa.com/how-it-works/</loc></url>
-  <url><loc>https://operzaa.com/about/</loc></url>
-  <url><loc>https://operzaa.com/blog/</loc></url>
-  <url><loc>https://operzaa.com/blog/hidden-cost-of-hiring-your-way-through-growth/</loc></url>
-  <url><loc>https://operzaa.com/privacy/</loc></url>
-  <url><loc>https://operzaa.com/terms/</loc></url>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://operzaa.com/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/solutions/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/how-it-works/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/about/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/blog/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/privacy/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/terms/</loc>
+       <lastmod>2026-11-08T12:29:23+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://operzaa.com/blog/hidden-cost-of-hiring-your-way-through-growth/</loc>
+       <lastmod>2026-09-13T00:00:00+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
 </urlset>
