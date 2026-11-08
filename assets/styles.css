@@ -14,14 +14,14 @@
 
     --on-dark-primary: var(--paper-050);
     --on-dark-secondary: rgba(246,244,239,.64);
-    --on-dark-faint: rgba(246,244,239,.38);
+    --on-dark-faint: rgba(246,244,239,.52);
     --on-dark-border: rgba(246,244,239,.12);
     --on-dark-surface: var(--ink-900);
     --on-dark-surface-2: var(--ink-800);
 
     --on-light-primary: var(--ink-950);
     --on-light-secondary: rgba(11,12,16,.62);
-    --on-light-faint: rgba(11,12,16,.42);
+    --on-light-faint: rgba(11,12,16,.58);
     --on-light-border: rgba(11,12,16,.12);
     --on-light-surface: #FFFFFF;
     --on-light-surface-2: var(--paper-100);
@@ -198,7 +198,7 @@
     padding:3px 8px; border-radius:20px; display:inline-flex; align-items:center; gap:5px; flex-shrink:0;
   }
   .pill::before{content:''; width:6px; height:6px; border-radius:50%; background:currentColor;}
-  .pill-good{background:rgba(46,158,109,.14); color:var(--good);}
+  .pill-good{background:rgba(46,158,109,.14); color:#3BB37E;}
   .pill-progress{background:rgba(156,147,255,.16); color:var(--accent-soft);}
   .pill-attention{background:rgba(180,112,12,.16); color:#E0A64C;}
   .ops-row .rt{margin-left:auto; font-family:var(--font-mono); font-size:11.5px; color:var(--on-dark-faint);}

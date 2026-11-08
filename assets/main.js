@@ -6,7 +6,7 @@
     else { nav.classList.remove('is-scrolled'); }
   };
   document.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  requestAnimationFrame(onScroll);
 
   // reveal on scroll — only arm (hide) elements once JS + IntersectionObserver
   // are confirmed available; otherwise everything stays visible at rest.
