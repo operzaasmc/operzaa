@@ -77,20 +77,18 @@
     });
   }
 
-  // strategy call pop-up: opens as soon as the page loads, once per browser session,
+  // strategy call pop-up: opens as soon as the page loads and on every refresh,
   // never on /contact/ or /thank-you/ or after a lead was already sent.
   function ss(k, v){
     try{ if(v === undefined){ return sessionStorage.getItem(k); } sessionStorage.setItem(k, v); }catch(e){ return null; }
   }
   var path = location.pathname.replace(/\/+$/, '/') || '/';
   var skip = /^\/(contact|thank-you)\//.test(path);
-  if(!skip && !ss('oz_popup_seen') && !ss('oz_lead')){
+  if(!skip && !ss('oz_lead')){
     openPopup();
   }
 
   function openPopup(){
-    if(ss('oz_popup_seen')){ return; }
-    ss('oz_popup_seen', '1');
     var lastFocus = document.activeElement;
     var modal = document.createElement('div');
     modal.className = 'oz-modal';
