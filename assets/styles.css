@@ -1,3 +1,13 @@
+  /* ============ FONT FALLBACKS ============
+     Metric-matched stand-ins shown while the web fonts download, so text takes
+     the same space before and after the swap (no layout shift, no re-layout). */
+  @font-face{font-family:'Bricolage Fallback'; src:local('Arial'), local('Liberation Sans'), local('Helvetica'), local('Roboto');
+    size-adjust:97%; ascent-override:95.4%; descent-override:28.4%; line-gap-override:0%;}
+  @font-face{font-family:'Plex Sans Fallback'; src:local('Arial'), local('Liberation Sans'), local('Helvetica'), local('Roboto');
+    size-adjust:99%; ascent-override:103.5%; descent-override:27.8%; line-gap-override:0%;}
+  @font-face{font-family:'Plex Mono Fallback'; src:local('Courier New'), local('Liberation Mono'), local('Menlo'), local('Roboto Mono');
+    size-adjust:100%; ascent-override:102.5%; descent-override:27.5%; line-gap-override:0%;}
+
   /* ============ TOKENS ============ */
   :root{
     --ink-950:#0B0C10;
@@ -26,9 +36,9 @@
     --on-light-surface: #FFFFFF;
     --on-light-surface-2: var(--paper-100);
 
-    --font-display:'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
-    --font-body:'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono:'IBM Plex Mono', 'SFMono-Regular', monospace;
+    --font-display:'Bricolage Grotesque', 'Bricolage Fallback', 'Hanken Grotesk', system-ui, sans-serif;
+    --font-body:'IBM Plex Sans', 'Plex Sans Fallback', system-ui, sans-serif;
+    --font-mono:'IBM Plex Mono', 'Plex Mono Fallback', 'SFMono-Regular', monospace;
 
     --gutter: clamp(20px, 5vw, 64px);
     --maxw: 1320px;
@@ -111,12 +121,17 @@
   .nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
     border-bottom:1px solid transparent;
-    transition:background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+    transition:background .25s ease, border-color .25s ease;
   }
   .nav.is-scrolled{
     background:rgba(11,12,16,.78);
     backdrop-filter:blur(10px);
     border-bottom-color: var(--on-dark-border);
+  }
+  /* phones: a live blur behind the fixed nav is repainted on every scroll
+     frame; a near-opaque bar looks the same and costs nothing. */
+  @media (max-width:767px){
+    .nav.is-scrolled{background:rgba(11,12,16,.94); backdrop-filter:none;}
   }
   .nav-inner{
     max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter);
@@ -571,7 +586,7 @@
   .oz-modal{
     position:fixed; inset:0; z-index:150; display:flex; align-items:center; justify-content:center;
     padding:24px 16px calc(24px + var(--oz-cc-offset, 0px));
-    background:rgba(11,12,16,.55); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    background:rgba(11,12,16,.66);
     overflow-y:auto; overscroll-behavior:contain;
     opacity:0; transition:opacity .28s ease;
   }

@@ -1,15 +1,18 @@
 (function(){
-  // nav scroll state
+  // nav scroll state: only touch the DOM when the state actually flips, and
+  // never read layout right after a write (avoids forced reflow).
   var nav = document.getElementById('nav');
+  var scrolled = null;
   var onScroll = function(){
-    if(window.scrollY > 12){ nav.classList.add('is-scrolled'); }
-    else { nav.classList.remove('is-scrolled'); }
+    var s = window.scrollY > 12;
+    if(s !== scrolled){ scrolled = s; nav.classList.toggle('is-scrolled', s); }
   };
   document.addEventListener('scroll', onScroll, {passive:true});
   requestAnimationFrame(onScroll);
 
   // reveal on scroll — only arm (hide) elements once JS + IntersectionObserver
   // are confirmed available; otherwise everything stays visible at rest.
+  // (Class writes only; no layout reads, so no forced reflow.)
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduced && 'IntersectionObserver' in window){
     var els = document.querySelectorAll('[data-reveal]');
@@ -85,7 +88,25 @@
   var path = location.pathname.replace(/\/+$/, '/') || '/';
   var skip = /^\/(contact|thank-you)\//.test(path);
   if(!skip && !ss('oz_lead')){
-    openPopup();
+    // open right after the page has painted (visually immediate), instead of
+    // during the initial parse, so it doesn't add to the first layout pass.
+    // It also waits (briefly) for the web fonts it uses, so the card isn't
+    // re-laid out by a font swap after it appears (that would be a layout shift).
+    var go = function(){
+      var opened = false;
+      var open = function(){ if(opened){ return; } opened = true; requestAnimationFrame(function(){ setTimeout(openPopup, 0); }); };
+      var f = document.fonts;
+      if(f && f.load && window.Promise){
+        Promise.all([
+          f.load('600 30px "Bricolage Grotesque"'),
+          f.load('400 15px "IBM Plex Sans"'),
+          f.load('600 15px "IBM Plex Sans"'),
+          f.load('600 12px "IBM Plex Mono"')
+        ]).then(open, open);
+        setTimeout(open, 1500);
+      } else { open(); }
+    };
+    if(document.readyState === 'complete'){ go(); } else { window.addEventListener('load', go, {once:true}); }
   }
 
   function openPopup(){
@@ -125,18 +146,26 @@
     var form = modal.querySelector('form');
     form.addEventListener('submit', function(){ ss('oz_lead', '1'); });
 
-    // leave room for the cookie banner if it is showing, so it never covers the form
-    function ccOffset(){
+    // leave room for the cookie banner if it is showing, so it never covers the
+    // form. ResizeObserver reports the banner's size after layout, so this never
+    // forces a synchronous reflow (unlike reading offsetHeight).
+    var ccRO = null;
+    function setOffset(h){ modal.style.setProperty('--oz-cc-offset', (h ? Math.ceil(h) + 16 : 0) + 'px'); }
+    function watchBanner(){
       var b = document.querySelector('.cc-banner');
-      var h = (b && !b.hidden) ? b.offsetHeight + 16 : 0;
-      modal.style.setProperty('--oz-cc-offset', h + 'px');
+      if(!b || !('ResizeObserver' in window)){ return; }
+      ccRO = new ResizeObserver(function(list){
+        var r = list[list.length - 1];
+        setOffset(b.hidden ? 0 : (r.borderBoxSize && r.borderBoxSize[0] ? r.borderBoxSize[0].blockSize : r.contentRect.height + 38));
+      });
+      ccRO.observe(b);
     }
 
     function close(){
       modal.classList.remove('is-open');
       document.documentElement.classList.remove('oz-modal-lock');
       document.removeEventListener('keydown', onKey);
-      window.removeEventListener('resize', ccOffset);
+      if(ccRO){ ccRO.disconnect(); }
       setTimeout(function(){ modal.remove(); }, 300);
       if(lastFocus && lastFocus.focus){ lastFocus.focus(); }
     }
@@ -153,17 +182,18 @@
       if(e.target === modal || e.target.closest('.oz-modal-close')){ close(); }
     });
     document.addEventListener('keydown', onKey);
-    window.addEventListener('resize', ccOffset);
-    document.addEventListener('click', function(e){
-      if(e.target.closest && e.target.closest('.cc-banner [data-cc]')){ setTimeout(ccOffset, 0); }
-    });
-
-    document.body.appendChild(modal);
-    ccOffset();
-    document.documentElement.classList.add('oz-modal-lock');
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){ modal.classList.add('is-open'); }); });
-    // focus the dialog itself (not a field) so phones don't pop the keyboard open
     card.setAttribute('tabindex', '-1');
-    card.focus({preventScroll:true});
+    watchBanner();
+    document.body.appendChild(modal);
+    document.documentElement.classList.add('oz-modal-lock');
+    // fade in on the next frame; focus after that write has been painted so
+    // focus() doesn't force a layout of a freshly inserted dialog.
+    requestAnimationFrame(function(){
+      modal.classList.add('is-open');
+      requestAnimationFrame(function(){
+        // focus the dialog itself (not a field) so phones don't pop the keyboard open
+        card.focus({preventScroll:true});
+      });
+    });
   }
 })();
