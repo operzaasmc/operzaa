@@ -1,0 +1,31 @@
+# OPERZAA
+
+> OPERZAA (legal name Operzaa SMC Ltd) is the operating engine behind growing SaaS companies. Sales development, customer support, customer success, AI and automation, and SaaS operations are run by specialized teams and AI as one managed function, inside the client's own CRM and helpdesk. Every new engagement starts with a free first week.
+
+Key facts:
+
+- Company: Operzaa SMC Ltd, trading as OPERZAA
+- Website: https://operzaa.com
+- Contact: contact@operzaa.com, or book a strategy call at https://operzaa.com/contact/
+- Markets served: United Kingdom, Europe, United States and Pakistan, with teams aligned to US, UK, Canadian, Australian, European and Pakistani business hours
+- Who it is for: growing SaaS companies that want an operational function run end to end instead of hiring one person at a time
+- Pricing: scoped per engagement (function, volume and coverage) on a strategy call; no public price list
+- How it differs from outsourcing: OPERZAA owns the function itself (scope, process, QA and reporting), rather than selling seats or hours
+
+## Main pages
+
+- [Home](https://operzaa.com/): what OPERZAA does, why it works, and FAQ
+- [Solutions](https://operzaa.com/solutions/): the five functions (sales development, customer support, customer success, AI and automation, SaaS operations) and what each covers
+- [How it works](https://operzaa.com/how-it-works/): how an engagement is scoped, deployed and reported on, stage by stage
+- [About](https://operzaa.com/about/): why OPERZAA exists and its approach
+- [Contact / book a strategy call](https://operzaa.com/contact/): the enquiry form
+
+## Writing
+
+- [The hidden cost of hiring your way through operational growth](https://operzaa.com/blog/hidden-cost-of-hiring-your-way-through-growth/): why adding headcount is not the same as a function that scales
+
+## Optional
+
+- [Blog](https://operzaa.com/blog/)
+- [Privacy policy](https://operzaa.com/privacy/)
+- [Terms of service](https://operzaa.com/terms/)
